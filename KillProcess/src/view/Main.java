@@ -9,6 +9,7 @@ public class Main
     {
         KillController kill = new KillController();
         int opc = 0, pid;
+        String nome = "";
         do {
             opc = menu();
             if (opc == 0)
@@ -17,7 +18,8 @@ public class Main
                 pid = Integer.parseInt(JOptionPane.showInputDialog("Insira o número do Pid"));
                 kill.mataPid(pid);
             } else if (opc == 2)
-                continue;
+                nome = JOptionPane.showInputDialog("Informe o nome do processo");
+                kill.mataNome(nome);
         } while (opc != 3); 
     }
 

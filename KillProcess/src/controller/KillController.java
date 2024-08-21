@@ -52,4 +52,20 @@ public class KillController
             System.err.println(e.getMessage());
         }
     }
+
+    public void mataNome(String nome)
+    {
+        String proc;
+        if (os().contains("Windows"))
+            // Usando /F pois o Windos não tava matando alguns processos sem essa flag
+            proc = "TASKKILL /F /IM " + nome;
+        else
+            proc = "pkill -f " + nome;
+        try {
+            String[] procArr = proc.split(" ");
+            Runtime.getRuntime().exec(procArr);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }
