@@ -9,13 +9,16 @@ public class Main
     {
         KillController kill = new KillController();
         int opc = 0, pid;
-        String nome = "";
+        String nome = null;
         do {
             opc = menu();
             if (opc == 0)
                 kill.listaProcessos();
             else if (opc == 1) {
-                pid = Integer.parseInt(JOptionPane.showInputDialog("Insira o número do Pid"));
+                nome = lerNumero();
+                if (nome == null)
+                    continue;
+                pid = Integer.parseInt(nome);                                
                 kill.mataPid(pid);
             } else if (opc == 2)
                 nome = JOptionPane.showInputDialog("Informe o nome do processo");
@@ -30,5 +33,24 @@ public class Main
             null, "Selecione a opção desejada", "Processos",
             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
             opcs, opcs[2]);
+    }
+
+    public static String lerNumero()
+    {
+        String num = null;
+        while (true)
+        {
+            try {
+                num = JOptionPane.showInputDialog("Informe o número do pid");
+                if (num == null)
+                    return null;
+                Integer.parseInt(num);
+                break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido, tente novamente");
+                continue;
+            }
+        }
+        return num;
     }
 }
