@@ -32,6 +32,8 @@ public class KillController
                 System.out.println(line);
                 line = buffer.readLine();
             }
+            buffer.close();
+            procOut.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
